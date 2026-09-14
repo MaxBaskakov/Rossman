@@ -121,40 +121,6 @@ result = pd.DataFrame({
 
 print(result)
 
-
-# from sklearn.model_selection import GridSearchCV, TimeSeriesSplit
-#
-# param_grid = {
-#     "n_estimators": [50, 100, 200],
-#     "max_depth": [20, 30, 40, 50],
-#     "min_samples_leaf": [1, 2, 3, 4]
-# }
-#
-# print("Starting")
-# grid_search = GridSearchCV(model_r, param_grid, cv=TimeSeriesSplit(n_splits=3),scoring="neg_root_mean_squared_error", n_jobs=-1)
-# start =time.time()
-# grid_search.fit(x_train, target_train)
-# result_time = (time.time() - start) / 60
-# print(f"Result time to train model - {result_time} minutes")
-# print(grid_search.best_params_)
-#
-# best_model = grid_search.best_estimator_
-#
-# val_prediction_r = best_model.predict(x_val)
-#
-# mae_r = mean_absolute_error(val_target,val_prediction_r)
-# rmse_r = np.sqrt(mean_squared_error(val_target, val_prediction_r))
-# rmspe_r = np.sqrt(np.mean(((val_target[no_null] - val_prediction_r[no_null]) / val_target[no_null]) **2))
-#
-# result = pd.DataFrame({
-#     "Model": ["LinearRegression", "RandomForest"],
-#     "mae": [mae, mae_r],
-#     "rmse": [rmse, rmse_r],
-#     "rmspe": [rmspe, rmspe_r]
-# })
-#
-# print(result)
-
 def user_prediction(data):
     data = pd.DataFrame([data])
     data["Year"] = pd.to_datetime(data["Date"]).dt.year
@@ -198,3 +164,35 @@ print(user_prediction(sample_input))
 
 
 
+# from sklearn.model_selection import GridSearchCV, TimeSeriesSplit
+#
+# param_grid = {
+#     "n_estimators": [50, 100, 200],
+#     "max_depth": [20, 30, 40, 50],
+#     "min_samples_leaf": [1, 2, 3, 4]
+# }
+#
+# print("Starting")
+# grid_search = GridSearchCV(model_r, param_grid, cv=TimeSeriesSplit(n_splits=3),scoring="neg_root_mean_squared_error", n_jobs=-1)
+# start =time.time()
+# grid_search.fit(x_train, target_train)
+# result_time = (time.time() - start) / 60
+# print(f"Result time to train model - {result_time} minutes")
+# print(grid_search.best_params_)
+#
+# best_model = grid_search.best_estimator_
+#
+# val_prediction_r = best_model.predict(x_val)
+#
+# mae_r = mean_absolute_error(val_target,val_prediction_r)
+# rmse_r = np.sqrt(mean_squared_error(val_target, val_prediction_r))
+# rmspe_r = np.sqrt(np.mean(((val_target[no_null] - val_prediction_r[no_null]) / val_target[no_null]) **2))
+#
+# result = pd.DataFrame({
+#     "Model": ["LinearRegression", "RandomForest"],
+#     "mae": [mae, mae_r],
+#     "rmse": [rmse, rmse_r],
+#     "rmspe": [rmspe, rmspe_r]
+# })
+#
+# print(result)
