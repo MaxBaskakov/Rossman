@@ -16,7 +16,7 @@ I cleaned the data and prepared it for regression. This included handling missin
 First, I trained a **Linear Regression** model and evaluated its performance using MAE, RMSE, and RMSPE.
 
 Then, I trained a **Random Forest Regressor** and evaluated it using the same metrics.
-
+### Old results
 | Model             |        MAE |        RMSE |      RMSPE |
 | :---------------- | ---------: | ----------: | ---------: |
 | Linear Regression |    1699.06 |     2457.49 |     46.43% |
@@ -34,3 +34,12 @@ However, the tuned model did not improve the results on the validation set. This
 
 I also implemented a `user_prediction()` function that allows the model to make predictions on new store data.
 
+### Feature engineering 
+
+I experimented with data and added feature engineering. The new features improved MAE and RMSE. RMSPE remained almost the same 
+
+### New results 
+| Model                 | MAE | RMSE | RMSPE |
+|:----------------------| :---: | :---: | :---: |
+| **Linear Regression** | 1706.25 | 2452.85 | 47.03% |
+| **Random Forest**     | **627.02** | **1017.65** | **17.43%** |

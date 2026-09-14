@@ -20,6 +20,21 @@ date = pd.to_datetime(merged_df["Date"])
 val_df = merged_df[date.dt.year == 2015]
 merged_df = merged_df[date.dt.year != 2015]
 
+merged_df["Year"] = pd.to_datetime(merged_df["Date"]).dt.year
+merged_df["Month"] = pd.to_datetime(merged_df["Date"]).dt.month
+merged_df["Day"] = pd.to_datetime(merged_df["Date"]).dt.day
+merged_df["WeekOfYear"] = pd.to_datetime(merged_df["Date"]).dt.isocalendar().week.astype(int)
+
+val_df["Year"] = pd.to_datetime(val_df["Date"]).dt.year
+val_df["Month"] = pd.to_datetime(val_df["Date"]).dt.month
+val_df["Day"] = pd.to_datetime(val_df["Date"]).dt.day
+val_df["WeekOfYear"] = pd.to_datetime(val_df["Date"]).dt.isocalendar().week.astype(int)
+
+merged_test_df["Year"] = pd.to_datetime(merged_test_df["Date"]).dt.year
+merged_test_df["Month"] = pd.to_datetime(merged_test_df["Date"]).dt.month
+merged_test_df["Day"] = pd.to_datetime(merged_test_df["Date"]).dt.day
+merged_test_df["WeekOfYear"] = pd.to_datetime(merged_test_df["Date"]).dt.isocalendar().week.astype(int)
+
 target_train = merged_df["Sales"]
 val_target = val_df["Sales"]
 merged_df.drop(columns=["Sales", "Date", "Customers"], inplace=True)
@@ -142,6 +157,10 @@ print(result)
 
 def user_prediction(data):
     data = pd.DataFrame([data])
+    data["Year"] = pd.to_datetime(data["Date"]).dt.year
+    data["Month"] = pd.to_datetime(data["Date"]).dt.month
+    data["Day"] = pd.to_datetime(data["Date"]).dt.day
+    data["WeekOfYear"] = pd.to_datetime(data["Date"]).dt.isocalendar().week.astype(int)
 
     data[categorical_cols] = data[categorical_cols].fillna("Missing")
 
